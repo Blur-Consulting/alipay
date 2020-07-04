@@ -5,7 +5,7 @@ module Alipay
   module Sign
     class RSA2
       def self.sign(key, string)
-        rsa = OpenSSL::PKey::RSA.new(key)
+        rsa = OpenSSL::PKey::RSA.new(Base64.decode64(key))
         Base64.strict_encode64(rsa.sign('sha256', string))
       end
 
